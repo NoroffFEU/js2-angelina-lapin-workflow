@@ -1,33 +1,35 @@
-// This function controls which JavaScript file is loaded on which page
-// In order to add additional pages, you will need to implement them below
-// You may change the behaviour or approach of this file if you choose
 export default async function router(pathname = window.location.pathname) {
   switch (pathname) {
     case "/":
-      await import("./views/home.js");
-      break;
-    case "/auth/":
-      await import("./views/auth.js");
+      await import("./views/home.js").then((module) => module.renderHome());
       break;
     case "/auth/login/":
-      await import("./views/login.js");
+      await import("./views/login.js").then((module) => module.renderLogin());
       break;
     case "/auth/register/":
-      await import("./views/register.js");
-      break;
-    case "/post/":
-      await import("./views/post.js");
-      break;
-    case "/post/edit/":
-      await import("./views/postEdit.js");
+      await import("./views/register.js").then((module) =>
+        module.renderRegister()
+      );
       break;
     case "/post/create/":
-      await import("./views/postCreate.js");
+      await import("./views/postCreate.js").then((module) =>
+        module.renderPostCreate()
+      );
+      break;
+    case "/post/edit/":
+      await import("./views/postEdit.js").then((module) =>
+        module.renderPostEdit()
+      );
       break;
     case "/profile/":
-      await import("./views/profile.js");
+      await import("./views/profile.js").then((module) =>
+        module.renderProfile()
+      );
       break;
     default:
-      await import("./views/notFound.js");
+      await import("./views/notFound.js").then((module) => {
+        console.log(module);
+        module.renderNotFound();
+      });
   }
 }

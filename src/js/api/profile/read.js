@@ -1,3 +1,52 @@
-export async function readProfile(username) {}
+import { API_SOCIAL_PROFILES } from "../constants.js";
+import { headers } from "../headers.js";
 
-export async function readProfiles(limit, page) {}
+export async function readProfile(username) {
+  try {
+    const response = await fetch(`${API_SOCIAL_PROFILES}/${username}`, {
+      method: "GET",
+      headers: {
+        ...headers(),
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || "Failed to fetch profile");
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching profile:", error);
+    throw error;
+  }
+}
+
+export async function readProfiles(limit = 12, page = 1) {
+  try {
+    const url = `${API_SOCIAL_PROFILES}?limit=${limit}&page=${page}`;
+
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        ...headers(),
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || "Failed to fetch profiles");
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching profiles:", error);
+    throw error;
+  }
+}
