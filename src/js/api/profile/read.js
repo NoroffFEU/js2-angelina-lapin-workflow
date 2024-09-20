@@ -24,29 +24,3 @@ export async function readProfile(username) {
     throw error;
   }
 }
-
-export async function readProfiles(limit = 12, page = 1) {
-  try {
-    const url = `${API_SOCIAL_PROFILES}?limit=${limit}&page=${page}`;
-
-    const response = await fetch(url, {
-      method: "GET",
-      headers: {
-        ...headers(),
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    });
-
-    if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.message || "Failed to fetch profiles");
-    }
-
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Error fetching profiles:", error);
-    throw error;
-  }
-}

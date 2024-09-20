@@ -9,12 +9,12 @@ export async function onLogin(event) {
   try {
     const data = await login({ email, password });
 
-    console.log("Login successful:", data);
-
     localStorage.setItem("token", data.token);
+    localStorage.setItem("username", data.name);
 
-    window.location.href = "/";
+    window.location.href = "/profile/index.html";
   } catch (error) {
-    alert(error.message);
+    console.error("Login failed:", error);
+    alert("Login failed. Please try again.");
   }
 }

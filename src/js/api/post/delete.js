@@ -1,13 +1,12 @@
 import { API_SOCIAL_POSTS } from "../constants.js";
 import { headers } from "../headers.js";
 
-export async function deletePost(id) {
+export async function deletePost(postId) {
   try {
-    const response = await fetch(`${API_SOCIAL_POSTS}/${id}`, {
+    const response = await fetch(`${API_SOCIAL_POSTS}/${postId}`, {
       method: "DELETE",
       headers: {
         ...headers(),
-        "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
     });

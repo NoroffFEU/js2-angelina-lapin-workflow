@@ -1,6 +1,7 @@
 export default async function router(pathname = window.location.pathname) {
   switch (pathname) {
     case "/":
+      console.log("Rendering Home");
       await import("./views/home.js").then((module) => module.renderHome());
       break;
     case "/auth/login/":
@@ -27,9 +28,8 @@ export default async function router(pathname = window.location.pathname) {
       );
       break;
     default:
-      await import("./views/notFound.js").then((module) => {
-        console.log(module);
-        module.renderNotFound();
-      });
+      await import("./views/notFound.js").then((module) =>
+        module.renderNotFound()
+      );
   }
 }

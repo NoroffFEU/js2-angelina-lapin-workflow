@@ -18,6 +18,9 @@ export async function login({ email, password }) {
     }
 
     const data = await response.json();
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("username", data.username);
+
     return data;
   } catch (error) {
     console.error("Error during login:", error);
