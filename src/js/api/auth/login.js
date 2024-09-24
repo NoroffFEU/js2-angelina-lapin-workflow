@@ -1,12 +1,10 @@
 import { API_AUTH_LOGIN } from "../constants.js";
-import { headers } from "../headers.js";
 
 export async function login({ email, password }) {
   try {
     const response = await fetch(API_AUTH_LOGIN, {
       method: "POST",
       headers: {
-        ...headers(),
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ email, password }),
@@ -14,12 +12,12 @@ export async function login({ email, password }) {
 
     if (!response.ok) {
       const error = await response.json();
+      console.error("Login API error:", error);
       throw new Error(error.message || "Login failed");
     }
 
     const data = await response.json();
-    localStorage.setItem("token", data.token);
-    localStorage.setItem("username", data.username);
+    console.log("Login API response:", data);
 
     return data;
   } catch (error) {

@@ -5,20 +5,16 @@ export async function readProfile(username) {
   try {
     const response = await fetch(`${API_SOCIAL_PROFILES}/${username}`, {
       method: "GET",
-      headers: {
-        ...headers(),
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
+      headers: headers(),
     });
 
     if (!response.ok) {
       const error = await response.json();
-      throw new Error(error.message || "Failed to fetch profile");
+      throw new Error(error.message || "Failed to load profile");
     }
 
-    const data = await response.json();
-    return data;
+    const profile = await response.json();
+    return profile;
   } catch (error) {
     console.error("Error fetching profile:", error);
     throw error;
