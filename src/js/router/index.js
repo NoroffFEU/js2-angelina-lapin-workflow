@@ -12,6 +12,12 @@ export default async function router(pathname = window.location.pathname) {
         module.renderRegister()
       );
       break;
+
+    case "/profile/":
+      await import("./views/profile.js").then((module) =>
+        module.renderProfile()
+      );
+      break;
     case "/post/create/":
       await import("./views/postCreate.js").then((module) =>
         module.renderPostCreate()
@@ -22,14 +28,10 @@ export default async function router(pathname = window.location.pathname) {
         module.renderPostEdit()
       );
       break;
-    case "/profile/":
-      await import("./views/profile.js").then((module) =>
-        module.renderProfile()
-      );
-      break;
     default:
-      await import("./views/notFound.js").then((module) =>
-        module.renderNotFound()
-      );
+      await import("./views/notFound.js").then((module) => {
+        console.log(module);
+        module.renderNotFound();
+      });
   }
 }

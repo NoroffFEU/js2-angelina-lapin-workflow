@@ -24,7 +24,7 @@ export async function renderProfile() {
   try {
     console.log("Fetching profile data for:", username);
     const profileResponse = await readProfile(username);
-    const profile = profileResponse.data; // Извлекаем данные профиля из `data`
+    const profile = profileResponse.data;
     console.log("Profile data fetched:", profile);
 
     const avatarUrl =
@@ -47,7 +47,7 @@ export async function renderProfile() {
     document
       .getElementById("createPostButton")
       .addEventListener("click", () => {
-        window.location.href = "/post/create/index.html";
+        window.location.href = "/post/create/";
       });
 
     console.log("Fetching posts for:", username);
