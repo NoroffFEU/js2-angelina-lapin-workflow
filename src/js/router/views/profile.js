@@ -1,6 +1,7 @@
 import { authGuard } from "../../utilities/authGuard.js";
 import { readProfile } from "../../api/profile/read.js";
 import { loadUserPosts } from "../../api/post/read.js";
+import router from "../../router/index.js";
 
 export async function renderProfile() {
   console.log("Starting profile rendering...");
@@ -64,13 +65,47 @@ export async function renderProfile() {
       postsContainer.innerHTML += posts
         .map(
           (post) => `
-        <div class="post">
-          <h2>${post.title}</h2>
-          <p>${post.body}</p>
-        </div>
+         <div class="post-card" data-post-id="${post.id}">
+            <div class="post-content">
+              <h2>${post.title}</h2>
+              <p>${post.body}</p>
+            </div>
+            <div class="post-actions">
+              <button class="edit-post" data-post-id="${post.id}">Edit Post</button>
+              <button class="delete-post" data-post-id="${post.id}">Delete Post</button>
+              <button class="go-to-post" data-post-id="${post.id}">Go to Post</button>
+            </div>
+          </div>
       `
         )
         .join("");
+      document.querySelectorAll(".edit-post").forEach((button) => {
+        button.addEventListener("click", (e) => {
+          const postId = e.target.getAttribute("data-post-id");
+          window.location.href = `/post/edit/index.html?id=${postId}`;
+        });
+      });
+
+      document.querySelectorAll(".delete-post").forEach((button) => {
+        button.addEventListener("click", async (e) => {
+          const postId = e.target.getAttribute("data-post-id");
+          if (confirm("Are you sure you want to delete this post?")) {
+            await deletePost(postId);
+          }
+        });
+      });
+
+      document
+        .querySelectorAll(".go-to-post, .post-card")
+        .forEach((element) => {
+          element.addEventListener("click", (e) => {
+            const postId = e.target
+              .closest(".post-card")
+              .getAttribute("data-post-id");
+            window.history.pushState({}, "", `/post/view/?id=${postId}`);
+            router();
+          });
+        });
     }
   } catch (error) {
     console.error("Error rendering profile:", error);

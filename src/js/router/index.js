@@ -1,7 +1,16 @@
 export default async function router(pathname = window.location.pathname) {
+  const urlParams = new URLSearchParams(window.location.search);
+  const postId = urlParams.get("id");
+
+  if (pathname.includes("/post/view/") && postId) {
+    await import("./views/post.js").then((module) =>
+      module.renderPostView(postId)
+    );
+    return;
+  }
+
   switch (pathname) {
     case "/":
-      console.log("Rendering Home");
       await import("./views/home.js").then((module) => module.renderHome());
       break;
     case "/auth/login/":
@@ -12,26 +21,14 @@ export default async function router(pathname = window.location.pathname) {
         module.renderRegister()
       );
       break;
-
     case "/profile/":
       await import("./views/profile.js").then((module) =>
         module.renderProfile()
       );
       break;
-    case "/post/create/":
-      await import("./views/postCreate.js").then((module) =>
-        module.renderPostCreate()
-      );
-      break;
-    case "/post/edit/":
-      await import("./views/postEdit.js").then((module) =>
-        module.renderPostEdit()
-      );
-      break;
     default:
-      await import("./views/notFound.js").then((module) => {
-        console.log(module);
-        module.renderNotFound();
-      });
+      await import("./views/notFound.js").then((module) =>
+        module.renderNotFound()
+      );
   }
 }

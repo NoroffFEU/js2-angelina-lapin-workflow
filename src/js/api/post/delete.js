@@ -1,14 +1,11 @@
 import { API_SOCIAL_POSTS } from "../constants.js";
 import { headers } from "../headers.js";
 
-export async function deletePost(postId) {
+export async function deletePost(id) {
   try {
-    const response = await fetch(`${API_SOCIAL_POSTS}/${postId}`, {
+    const response = await fetch(`${API_SOCIAL_POSTS}/${id}`, {
       method: "DELETE",
-      headers: {
-        ...headers(),
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
+      headers: headers(),
     });
 
     if (!response.ok) {
@@ -17,7 +14,6 @@ export async function deletePost(postId) {
     }
 
     console.log("Post deleted successfully.");
-    return true;
   } catch (error) {
     console.error("Error deleting post:", error);
     throw error;

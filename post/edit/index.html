@@ -3,14 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit Post - Noroff FED2 JS2 CA</title>
+    <title>Edit Post</title>
     <script type="module" src="/src/app.js"></script>
   </head>
-
   <body>
     <h1>Edit Post</h1>
-
-    <form name="editPost">
+    <form id="editPostForm">
       <div>
         <label for="title">Title</label>
         <input id="title" type="text" name="title" required />
@@ -23,20 +21,10 @@
 
       <div>
         <label for="tags">Tags (comma separated)</label>
-        <input id="tags" type="text" name="tags" placeholder="tag1, tag2" />
+        <input id="tags" type="text" name="tags" />
       </div>
 
-      <div>
-        <label for="media">Media URL</label>
-        <input
-          id="media"
-          type="url"
-          name="media"
-          placeholder="https://example.com/image.jpg"
-        />
-      </div>
-
-      <button type="submit">Edit Post</button>
+      <button type="submit">Update Post</button>
     </form>
   </body>
 </html>

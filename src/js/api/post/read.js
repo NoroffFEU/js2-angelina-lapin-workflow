@@ -57,3 +57,29 @@ export async function readPosts(limit = 12) {
     throw error;
   }
 }
+export async function getPostById(id) {
+  console.log("Fetching post by ID:", id);
+
+  try {
+    const response = await fetch(`${API_SOCIAL_POSTS}/${id}`, {
+      method: "GET",
+      headers: headers(),
+    });
+
+    console.log("Response status:", response.status);
+
+    if (!response.ok) {
+      const error = await response.json();
+      console.log("Error response body:", error);
+      throw new Error(error.message || "Failed to fetch post");
+    }
+
+    const post = await response.json();
+    console.log("Post fetched:", post);
+
+    return post.data;
+  } catch (error) {
+    console.error("Error fetching post:", error);
+    throw error;
+  }
+}
