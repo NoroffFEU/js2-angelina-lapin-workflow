@@ -2,6 +2,7 @@ import { authGuard } from "../../utilities/authGuard.js";
 import { readProfile } from "../../api/profile/read.js";
 import { loadUserPosts } from "../../api/post/read.js";
 import router from "../../router/index.js";
+import { deletePost } from "../../api/post/delete.js";
 
 export async function renderProfile() {
   console.log("Starting profile rendering...");
@@ -79,6 +80,7 @@ export async function renderProfile() {
       `
         )
         .join("");
+
       document.querySelectorAll(".edit-post").forEach((button) => {
         button.addEventListener("click", (e) => {
           const postId = e.target.getAttribute("data-post-id");
@@ -90,7 +92,15 @@ export async function renderProfile() {
         button.addEventListener("click", async (e) => {
           const postId = e.target.getAttribute("data-post-id");
           if (confirm("Are you sure you want to delete this post?")) {
-            await deletePost(postId);
+            try {
+              console.log("Deleting post with ID:", postId);
+              await deletePost(postId);
+              await renderProfile();
+              alert("Post deleted successfully");
+            } catch (error) {
+              console.error("Error deleting post:", error);
+              alert("Failed to delete post");
+            }
           }
         });
       });
@@ -112,3 +122,5 @@ export async function renderProfile() {
     app.innerHTML = "<p>Failed to load profile data.</p>";
   }
 }
+
+document.addEventListener("DOMContentLoaded", renderProfile);

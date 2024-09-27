@@ -26,6 +26,11 @@ export default async function router(pathname = window.location.pathname) {
         module.renderProfile()
       );
       break;
+    case "/post/create/":
+      await import("./views/postCreate.js").then((module) =>
+        module.renderPostCreate()
+      );
+      break;
     default:
       await import("./views/notFound.js").then((module) =>
         module.renderNotFound()

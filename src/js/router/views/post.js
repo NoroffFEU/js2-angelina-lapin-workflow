@@ -28,7 +28,20 @@ export async function renderPostView(postId) {
       ).toLocaleDateString()}</p>
       <p><strong>Comments:</strong> ${post._count.comments}</p>
       <p><strong>Reactions:</strong> ${post._count.reactions}</p>
+
+      <div class="post-navigation">
+        <button id="backButton">Go Back</button>
+        <button id="homeButton">Go Back to Home</button>
+      </div>
     `;
+
+    document.getElementById("backButton").addEventListener("click", () => {
+      window.location.href = "/profile/";
+    });
+
+    document.getElementById("homeButton").addEventListener("click", () => {
+      window.location.href = "/";
+    });
   } catch (error) {
     console.error("Failed to load post:", error);
     app.innerHTML = `<p>Failed to load post data.</p>`;
