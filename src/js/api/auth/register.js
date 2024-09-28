@@ -30,7 +30,7 @@ export async function register({ name, email, password }) {
 
       if (errorData.errors && errorData.errors.length > 0) {
         errorData.errors.forEach((err, index) => {
-          console.error(`Ошибка ${index + 1}:`, err.message || err);
+          console.error(`Error ${index + 1}:`, err.message || err);
         });
       }
       throw new Error(errorData.message || "Registration failed");
