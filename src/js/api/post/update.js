@@ -1,5 +1,6 @@
 import { API_SOCIAL_POSTS } from "../constants.js";
 import { headers } from "../headers.js";
+import { API_KEY } from "../constants.js";
 
 export async function updatePost(id, { title, body, tags, media }) {
   try {
@@ -9,11 +10,12 @@ export async function updatePost(id, { title, body, tags, media }) {
         ...headers(),
         "Content-Type": "application/json",
         Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "X-Noroff-API-KEY": API_KEY,
       },
       body: JSON.stringify({
         title,
         body,
-        tags: tags.split(",").map((tag) => tag.trim()),
+        tags,
         media,
       }),
     });

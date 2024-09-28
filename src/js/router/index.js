@@ -8,6 +8,12 @@ export default async function router(pathname = window.location.pathname) {
     );
     return;
   }
+  if (pathname.includes("/post/edit/") && postId) {
+    await import("./views/postEdit.js").then((module) =>
+      module.renderPostEdit(postId)
+    );
+    return;
+  }
 
   switch (pathname) {
     case "/":
