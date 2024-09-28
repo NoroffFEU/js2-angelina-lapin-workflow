@@ -17,7 +17,6 @@ export async function getKey() {
     }
 
     const data = await response.json();
-    console.log("API Key created:", data.data.key);
 
     return data.data.key;
   } catch (error) {

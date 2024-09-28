@@ -20,15 +20,11 @@ export async function onRegister(event) {
   }
 
   try {
-    console.log("Calling register() with data:", { name, email, password });
-
     const data = await register({
       name,
       email,
       password,
     });
-
-    console.log("Registration successful:", data);
 
     window.location.href = "/auth/login/";
   } catch (error) {

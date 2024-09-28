@@ -11,7 +11,6 @@ export async function onUpdatePost(event) {
 
   try {
     const data = await updatePost(postId, { title, body, tags, media });
-    console.log("Post updated successfully:", data);
 
     window.location.href = "/post/";
   } catch (error) {

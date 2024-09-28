@@ -2,7 +2,7 @@ import { API_KEY } from "./constants.js";
 
 export function headers() {
   const token = localStorage.getItem("token");
-  console.log("Token in localStorage:", token);
+
   const headers = new Headers();
 
   if (token) {

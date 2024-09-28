@@ -8,7 +8,6 @@ export async function onLogin(event) {
 
   try {
     const data = await login({ email, password });
-    console.log("API Response:", data);
 
     localStorage.setItem("token", data.data.accessToken);
     localStorage.setItem("username", data.data.name);

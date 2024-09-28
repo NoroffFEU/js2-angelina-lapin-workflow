@@ -5,7 +5,6 @@ export function setLogoutListener() {
 
   if (logoutButton) {
     logoutButton.addEventListener("click", onLogout);
-    console.log("Logout listener set.");
   } else {
     console.warn("Logout button not found on the page.");
   }

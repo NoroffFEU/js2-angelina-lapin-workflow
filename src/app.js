@@ -8,7 +8,12 @@ import { onDeletePost } from "./js/ui/post/delete.js";
 document.addEventListener("DOMContentLoaded", async () => {
   await router(window.location.pathname);
 
-  setLogoutListener();
+  if (
+    !window.location.pathname.includes("/auth/login/") &&
+    !window.location.pathname.includes("/auth/register/")
+  ) {
+    setLogoutListener();
+  }
 
   const createPostForm = document.forms["createPost"];
   if (createPostForm) {

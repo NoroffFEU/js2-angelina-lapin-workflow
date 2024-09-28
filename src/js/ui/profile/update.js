@@ -14,7 +14,6 @@ export async function onUpdateProfile(event) {
 
   try {
     const updatedProfile = await updateProfile(username, { avatar, banner });
-    console.log("Profile updated successfully:", updatedProfile);
 
     alert("Profile updated successfully!");
     window.location.href = `/profile/?username=${username}`;

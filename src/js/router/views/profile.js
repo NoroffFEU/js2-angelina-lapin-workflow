@@ -5,7 +5,6 @@ import router from "../../router/index.js";
 import { deletePost } from "../../api/post/delete.js";
 
 export async function renderProfile() {
-  console.log("Starting profile rendering...");
   authGuard();
 
   const app = document.getElementById("app");
@@ -15,7 +14,6 @@ export async function renderProfile() {
   }
 
   const username = localStorage.getItem("username");
-  console.log("Username from localStorage:", username);
 
   if (!username) {
     alert("Username not found. Redirecting to login.");
@@ -24,10 +22,8 @@ export async function renderProfile() {
   }
 
   try {
-    console.log("Fetching profile data for:", username);
     const profileResponse = await readProfile(username);
     const profile = profileResponse.data;
-    console.log("Profile data fetched:", profile);
 
     const avatarUrl =
       profile.avatar && profile.avatar.url
@@ -52,11 +48,8 @@ export async function renderProfile() {
         window.location.href = "/post/create/";
       });
 
-    console.log("Fetching posts for:", username);
     const postsResponse = await loadUserPosts(username);
     const posts = postsResponse.data;
-
-    console.log("Posts loaded:", posts);
 
     const postsContainer = document.getElementById("postsContainer");
 
@@ -93,7 +86,6 @@ export async function renderProfile() {
           const postId = e.target.getAttribute("data-post-id");
           if (confirm("Are you sure you want to delete this post?")) {
             try {
-              console.log("Deleting post with ID:", postId);
               await deletePost(postId);
               await renderProfile();
               alert("Post deleted successfully");

@@ -9,7 +9,6 @@ export async function renderPostView(postId) {
 
   try {
     const post = await getPostById(postId);
-    console.log("Post data:", post);
 
     app.innerHTML = `
       <h1>${post.title}</h1>

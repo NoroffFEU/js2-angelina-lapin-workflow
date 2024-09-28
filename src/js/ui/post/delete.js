@@ -15,7 +15,6 @@ export async function onDeletePost(event) {
 
   try {
     await deletePost(postId);
-    console.log("Post deleted from UI.");
 
     const postElement = document.getElementById(`post-${postId}`);
     if (postElement) {

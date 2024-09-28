@@ -24,7 +24,6 @@ export async function login({ email, password }) {
     }
 
     const data = await response.json();
-    console.log("Login API response:", data);
 
     return data;
   } catch (error) {
