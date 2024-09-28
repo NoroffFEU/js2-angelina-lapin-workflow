@@ -1,6 +1,14 @@
 import { API_SOCIAL_PROFILES } from "../constants.js";
 import { headers } from "../headers.js";
-
+/**
+ *
+ * @param {string} username - The username to update the profile for
+ * @param {object} params - The parameters to update a profile
+ * @param {string} params.avatar - The avatar URL of the profile
+ * @param {string} params.banner - The banner URL of the profile
+ * @returns {Promise<object>} The updated profile
+ * @throws {Error} An error
+ */
 export async function updateProfile(username, { avatar, banner }) {
   try {
     const response = await fetch(`${API_SOCIAL_PROFILES}/${username}`, {

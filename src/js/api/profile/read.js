@@ -1,6 +1,11 @@
 import { API_SOCIAL_PROFILES } from "../constants.js";
 import { headers } from "../headers.js";
-
+/**
+ *
+ * @param {string} username - The username to fetch the profile for
+ * @returns {Promise<object>} The profile
+ * @throws {Error} An error
+ */
 export async function readProfile(username) {
   try {
     const response = await fetch(`${API_SOCIAL_PROFILES}/${username}`, {

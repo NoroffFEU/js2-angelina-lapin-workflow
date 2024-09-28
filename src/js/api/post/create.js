@@ -1,6 +1,19 @@
 import { API_SOCIAL_POSTS } from "../constants.js";
 import { headers } from "../headers.js";
 
+/**
+ * 
+ * @param {object} params - The parameters to create a post
+ * @param {string} params.title - The title of the post
+ * @param {string} params.body - The body of the post
+ * @param {string} [params.tags=""] - The tags of the post
+ * @param {string} [params.mediaUrl=""] - The media URL of the post
+ *  @param {string} [params.mediaAlt=""] - The media alt of the post
+ * @param {string} [params.mediaAlt=""] - The media alt of the post
+ *@returns {Promise<object>} The created post
+ @throws {Error} An error 
+ */
+
 export async function createPost({
   title,
   body,

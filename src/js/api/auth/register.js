@@ -1,6 +1,14 @@
 import { API_AUTH_REGISTER } from "../constants.js";
 import { headers } from "../headers.js";
-
+/**
+ *
+ * @param {object} params - The parameters to register a user
+ * @param {string} params.name - The name of the user
+ * @param {string} params.email - The email of the user
+ * @param {string} params.password - The password of the user
+ * @returns {Promise<object>} The registered user
+ * @throws {Error} An error
+ */
 export async function register({ name, email, password }) {
   try {
     const requestBody = {

@@ -1,6 +1,11 @@
 import { API_SOCIAL_PROFILES, API_SOCIAL_POSTS } from "../constants.js";
 import { headers } from "../headers.js";
-
+/**
+ *
+ * @param {string} username - The username to fetch posts for
+ * @returns {Promise<object[]>} The posts
+ * @throws {Error} An error
+ */
 export async function loadUserPosts(username) {
   console.log("Loading posts for username:", username);
 
@@ -30,7 +35,12 @@ export async function loadUserPosts(username) {
     throw error;
   }
 }
-
+/**
+ *
+ * @param {number} limit - The number of posts to fetch
+ * @returns {Promise<object[]>} The posts
+ * @throws {Error} An error
+ */
 export async function readPosts(limit = 12) {
   console.log("Loading all posts...");
 
@@ -57,6 +67,12 @@ export async function readPosts(limit = 12) {
     throw error;
   }
 }
+/**
+ *
+ * @param {string} id - The ID of the post to fetch
+ * @returns {Promise<object>} The post
+ * @throws {Error} An error
+ */
 export async function getPostById(id) {
   console.log("Fetching post by ID:", id);
 

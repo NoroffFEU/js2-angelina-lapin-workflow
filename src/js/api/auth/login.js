@@ -1,5 +1,12 @@
 import { API_AUTH_LOGIN } from "../constants.js";
-
+/**
+ *
+ * @param {object} params - The parameters to login a user
+ * @param {string} params.email - The email of the user
+ * @param {string} params.password - The password of the user
+ * @returns {Promise<object>} The logged in user
+ * @throws {Error} An error
+ */
 export async function login({ email, password }) {
   try {
     const response = await fetch(API_AUTH_LOGIN, {
