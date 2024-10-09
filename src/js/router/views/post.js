@@ -43,6 +43,6 @@ export async function renderPostView(postId) {
     });
   } catch (error) {
     console.error("Failed to load post:", error);
-    app.innerHTML = `<p>Failed to load post data.</p>`;
+    app.innerHTML = "<p>Failed to load post data.</p>";
   }
 }
