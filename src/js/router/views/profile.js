@@ -35,12 +35,22 @@ export async function renderProfile() {
         : `${profile.name}'s Avatar`;
 
     app.innerHTML = `
-      <h1>${username}'s Profile</h1>
-      <img src="${avatarUrl}" alt="${avatarAlt}" width="150">
-      <div><strong>Bio:</strong> ${profile.bio || "No bio available"}</div>
-      <button id="createPostButton">Create Post</button>
-      <div id="postsContainer"><h2>Posts</h2></div>
-    `;
+        <div class="container my-5">
+          <div class="card p-4 shadow-sm">
+            <h1 class="text-center text-primary mb-4">${username}'s Profile</h1>
+            <div class="text-center mb-4">
+              <img src="${avatarUrl}" alt="${avatarAlt}" class="rounded-circle" width="150">
+            </div>
+            <p><strong>Bio:</strong> ${profile.bio || "No bio available"}</p>
+            <div class="text-center my-3">
+              <button id="createPostButton" class="btn btn-primary">Create Post</button>
+            </div>
+            <div id="postsContainer" class="mt-4">
+              <h2 class="text-secondary">Posts</h2>
+            </div>
+          </div>
+        </div>
+      `;
 
     document
       .getElementById("createPostButton")
@@ -59,18 +69,18 @@ export async function renderProfile() {
       postsContainer.innerHTML += posts
         .map(
           (post) => `
-         <div class="post-card" data-post-id="${post.id}">
-            <div class="post-content">
-              <h2>${post.title}</h2>
-              <p>${post.body}</p>
-            </div>
-            <div class="post-actions">
-              <button class="edit-post" data-post-id="${post.id}">Edit Post</button>
-              <button class="delete-post" data-post-id="${post.id}">Delete Post</button>
-              <button class="go-to-post" data-post-id="${post.id}">Go to Post</button>
-            </div>
+          <div class="card mb-3 shadow-sm" data-post-id="${post.id}">
+        <div class="card-body">
+          <h5 class="card-title">${post.title}</h5>
+          <p class="card-text">${post.body}</p>
+          <div class="d-flex justify-content-between mt-3">
+            <button class="btn btn-outline-secondary edit-post" data-post-id="${post.id}">Edit Post</button>
+            <button class="btn btn-danger delete-post" data-post-id="${post.id}">Delete Post</button>
+            <button class="btn btn-link go-to-post" data-post-id="${post.id}">Go to Post</button>
           </div>
-      `
+        </div>
+      </div>
+    `
         )
         .join("");
 
@@ -97,17 +107,17 @@ export async function renderProfile() {
         });
       });
 
-      document
-        .querySelectorAll(".go-to-post, .post-card")
-        .forEach((element) => {
-          element.addEventListener("click", (e) => {
-            const postId = e.target
-              .closest(".post-card")
-              .getAttribute("data-post-id");
+      document.querySelectorAll(".go-to-post").forEach((button) => {
+        button.addEventListener("click", (e) => {
+          const postId = e.target.getAttribute("data-post-id");
+          if (postId) {
             window.history.pushState({}, "", `/post/view/?id=${postId}`);
             router();
-          });
+          } else {
+            console.error("Post ID not found");
+          }
         });
+      });
     }
   } catch (error) {
     console.error("Error rendering profile:", error);

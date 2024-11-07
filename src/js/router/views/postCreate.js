@@ -11,38 +11,40 @@ export function renderPostCreate() {
   }
 
   app.innerHTML = `
-    <h1>Create Post</h1>
+  <div class="container my-5">
+    <div class="card p-4 shadow border-0">
+      <h1 class="display-6 text-muted mb-4 text-center">Create Post</h1>
+      <form name="createPost">
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input id="title" type="text" name="title" class="form-control" required />
+        </div>
 
-   <form name="createPost">
-  <div>
-    <label for="title">Title</label>
-    <input id="title" type="text" name="title" required />
+        <div class="mb-3">
+          <label for="body" class="form-label">Body</label>
+          <textarea id="body" name="body" class="form-control" rows="5" required></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label for="tags" class="form-label">Tags (comma separated)</label>
+          <input id="tags" type="text" name="tags" class="form-control" placeholder="tag1, tag2" />
+        </div>
+
+        <div class="mb-3">
+          <label for="mediaUrl" class="form-label">Media URL</label>
+          <input id="mediaUrl" type="url" name="mediaUrl" class="form-control" placeholder="https://example.com/image.jpg" />
+        </div>
+
+        <div class="mb-3">
+          <label for="mediaAlt" class="form-label">Media Alt Text</label>
+          <input id="mediaAlt" type="text" name="mediaAlt" class="form-control" placeholder="Description of the image" />
+        </div>
+
+        <button type="submit" class="btn btn-outline-primary w-100">Create Post</button>
+      </form>
+    </div>
   </div>
-
-  <div>
-    <label for="body">Body</label>
-    <textarea id="body" name="body" required></textarea>
-  </div>
-
-  <div>
-    <label for="tags">Tags (comma separated)</label>
-    <input id="tags" type="text" name="tags" placeholder="tag1, tag2" />
-  </div>
-
-  <div>
-    <label for="mediaUrl">Media URL</label>
-    <input id="mediaUrl" type="url" name="mediaUrl" placeholder="https://example.com/image.jpg" />
-  </div>
-
-  <div>
-    <label for="mediaAlt">Media Alt Text</label>
-    <input id="mediaAlt" type="text" name="mediaAlt" placeholder="Description of the image" />
-  </div>
-
-  <button type="submit">Create Post</button>
-</form>
-
-  `;
+`;
 
   const form = document.forms["createPost"];
   if (form) {

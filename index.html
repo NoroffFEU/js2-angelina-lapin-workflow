@@ -4,13 +4,65 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Noroff FED2 JS2 CA</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/src/css/style.css" />
   </head>
 
   <body>
-    <img src="/public/images/noroff-logo.png" alt="Noroff Logo" />
-    <a href="./profile/">My Profile</a>
-    <a href="./auth/login/">Login</a>
-    <a href="./auth/register/">Register</a>
-    <button id="logoutButton">Logout</button>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img
+            src="/public/images/noroff-logo.png"
+            alt="Noroff Logo"
+            width="120"
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="./profile/">My Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./auth/login/">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./auth/register/">Register</a>
+            </li>
+            <li class="nav-item">
+              <button id="logoutButton" class="btn btn-outline-danger ms-2">
+                Logout
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mt-5">
+      <div class="text-center">
+        <h1 class="display-4">Welcome to Noroff Social Media App</h1>
+        <p class="lead mt-3">
+          Please <a href="./auth/login/">Login</a> if you already have an
+          account or <a href="./auth/register/">Register</a> a new user to start
+        </p>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
