@@ -11,28 +11,33 @@ export async function renderPostView(postId) {
     const post = await getPostById(postId);
 
     app.innerHTML = `
-      <h1>${post.title}</h1>
-      <p>${post.body}</p>
-      <p><strong>Tags:</strong> ${post.tags.join(", ")}</p>
-      ${
-        post.media && post.media.url
-          ? `<img src="${post.media.url}" alt="${post.media.alt}" width="400">`
-          : ""
-      }
-      <p><strong>Created at:</strong> ${new Date(
-        post.created
-      ).toLocaleDateString()}</p>
-      <p><strong>Updated at:</strong> ${new Date(
-        post.updated
-      ).toLocaleDateString()}</p>
-      <p><strong>Comments:</strong> ${post._count.comments}</p>
-      <p><strong>Reactions:</strong> ${post._count.reactions}</p>
-
-      <div class="post-navigation">
-        <button id="backButton">Go Back</button>
-        <button id="homeButton">Go Back to Home</button>
+  <div class="container my-5">
+    <div class="card p-4 shadow-sm">
+      <h1 class="card-title text-primary text-center">${post.title}</h1>
+      <div class="card-body">
+        <p class="card-text">${post.body}</p>
+        <p><strong>Tags:</strong> ${post.tags.join(", ")}</p>
+        ${
+          post.media && post.media.url
+            ? `<div class="text-center my-3"><img src="${post.media.url}" alt="${post.media.alt}" class="img-fluid" width="400"></div>`
+            : ""
+        }
+        <p><strong>Created at:</strong> ${new Date(
+          post.created
+        ).toLocaleDateString()}</p>
+        <p><strong>Updated at:</strong> ${new Date(
+          post.updated
+        ).toLocaleDateString()}</p>
+        <p><strong>Comments:</strong> ${post._count.comments}</p>
+        <p><strong>Reactions:</strong> ${post._count.reactions}</p>
+        <div class="d-flex justify-content-between mt-4">
+          <button id="backButton" class="btn btn-secondary">Go Back</button>
+          <button id="homeButton" class="btn btn-link">Go Back to Home</button>
+        </div>
       </div>
-    `;
+    </div>
+  </div>
+`;
 
     document.getElementById("backButton").addEventListener("click", () => {
       window.location.href = "/profile/";

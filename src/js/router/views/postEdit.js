@@ -14,32 +14,42 @@ export async function renderPostEdit(postId) {
   const post = await getPostById(postId);
 
   app.innerHTML = `
-    <h1>Edit Post</h1>
-    <form id="editPostForm">
-      <div>
-        <label for="title">Title</label>
-        <input id="title" type="text" name="title" value="${
-          post.title
-        }" required />
-      </div>
+  <div class="container my-5">
+    <div class="card p-4 shadow border-0">
+      <h1 class="display-6 text-muted mb-4 text-center">Edit Post</h1>
+      <form id="editPostForm">
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input id="title" type="text" name="title" class="form-control" value="${
+            post.title
+          }" required />
+        </div>
 
-      <div>
-        <label for="body">Body</label>
-        <textarea id="body" name="body" required>${post.body}</textarea>
-      </div>
+        <div class="mb-3">
+          <label for="body" class="form-label">Body</label>
+          <textarea id="body" name="body" class="form-control" rows="5" required>${
+            post.body
+          }</textarea>
+        </div>
 
-      <div>
-        <label for="tags">Tags (comma separated)</label>
-        <input id="tags" type="text" name="tags" value="${post.tags.join(
-          ", "
-        )}" />
-      </div>
+        <div class="mb-3">
+          <label for="tags" class="form-label">Tags (comma separated)</label>
+          <input id="tags" type="text" name="tags" class="form-control" value="${post.tags.join(
+            ", "
+          )}" />
+        </div>
 
-      <button type="submit">Update Post</button>
-    </form>
-    <button id="goBackButton">Go Back</button>
-    <button id="goBackHomeButton">Go Back to Homepage</button>
-  `;
+        <div class="d-flex justify-content-between mt-4">
+          <button type="submit" class="btn btn-outline-primary">Update Post</button>
+          <div>
+            <button type="button" id="goBackButton" class="btn btn-secondary me-2">Go Back</button>
+            <button type="button" id="goBackHomeButton" class="btn btn-link">Go Back to Homepage</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+`;
 
   document
     .getElementById("editPostForm")
